@@ -17,11 +17,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //static middleware
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.use('/api', require('./api')); // include our routes!
+//our routes HAVE to be included here
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
-}); // Send index.html for any other requests
+app.use('/', require('./routes/main.js')); 
+
+
+//temp disabled so i can debug, don't delete
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../public/index.html'));
+// }); // Send index.html for any other requests
 
 //error handling middleware
 app.use((err, req, res, next) => {

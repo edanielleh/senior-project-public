@@ -4,8 +4,9 @@ const db = require('./server/db/models')
 const app = require('./server')
 const PORT = 1337;
 
-db.sync() // if you update your db schemas, make sure you drop the tables first and then recreate them
+
+db.sync({}) /* drop db = {force: true} */
 .then(() => {
-  console.log('db synced')
-  app.listen(PORT, () => console.log(`studiously serving silly sounds on port ${PORT}`))
+  console.log('my-project is synced')
+  app.listen(PORT, () => console.log(`we are up and running on port ${PORT}`))
 });
